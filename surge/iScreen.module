@@ -1,1 +1,15 @@
+#!name=iScreen
+#!desc=iScreen解锁vip
+#!author=chxm1023
 
+[Script]
+
+iscreenfz_8 = type=http-response, pattern=^https?:\/\/cs\.kuso\.xyz\/configs.+, requires-body=true, max-size=3145728, script-path=hhttps://raw.githubusercontent.com/Gin8527/Script/main/quanX/iscreenfz.js, timeout=60, script-update-interval=0
+
+[Map Local]
+
+^https?:\/\/pay\.kuso\.xyz\/pay\/pay-check data="https://raw.githubusercontent.com/mieqq/mieqq/master/reject-200.txt"
+
+[MITM]
+
+hostname = %APPEND% cs.kuso.xyz
