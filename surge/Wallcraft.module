@@ -1,1 +1,10 @@
+#!name=Wallcraft
+#!desc=Wallcraft
 
+[Script]
+
+Wall_6 = type=http-response, pattern=^https?:\/\/billing-ios\.wallpaperscraft\.com\/verify_receipt\/remove_ads$, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/Wall.js, timeout=60, script-update-interval=0
+
+[MITM]
+
+hostname = %APPEND% *.wallpaperscraft.
