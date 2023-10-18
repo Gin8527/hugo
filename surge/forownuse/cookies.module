@@ -6,7 +6,7 @@
 # > 阿里云盘签到 = type=cron,cronexp="0 10 0 * * ?",wake-system=1,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js
 
 # > Bing积分
-Bing积分cookie = requires-body=0,type=http-request,pattern=https:\/\/rewards\.bing\.com,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bing/bingPoint.js
+Bing积分cookie = = type=http-request, pattern=^https:\/\/rewards\.bing\.com, script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bing/bingPoint.js, timeout=60, script-update-interval=0
 # > Bing积分 = type=cron,cronexp="0 10 0 * * ?",wake-system=1,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bing/bingPoint.js
 
 # > B站签到
