@@ -1,0 +1,32 @@
+#!name=自用签到获取cookie
+#!desc=阿里云盘、bing、B站、贴吧、起点、高德
+[Script]
+# > 阿里云盘签到https://auth.alipan.com/v2/account/token
+阿里云盘签到cookie = requires-body=1,type=http-response,pattern=https:\/\/auth.(aliyundrive|alipan).com\/v2\/account\/token,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js
+# > 阿里云盘签到 = type=cron,cronexp="0 10 0 * * ?",wake-system=1,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js
+
+# > Bing积分
+Bing积分cookie = requires-body=0,type=http-request,pattern=https:\/\/rewards\.bing\.com,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bing/bingPoint.js
+# > Bing积分 = type=cron,cronexp="0 10 0 * * ?",wake-system=1,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bing/bingPoint.js
+
+# > B站签到
+# > B站每日任务 = type=cron,cronexp=30 7 * * *,script-path=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js,wake-system=1,timeout=15
+B站Cookie(APP) = type=http-request,pattern=^https?:\/\/app\.bilibili\.com\/x\/resource\/domain\?,script-path=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js,requires-body=0
+B站Cookie(网页) = type=http-request,pattern=^https?:\/\/m.bilibili.com/$,script-path=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js,requires-body=0
+
+# > 贴吧签到
+贴吧Cookie1 = type=http-request,pattern=^https?:\/\/tiebac\.baidu\.com\/c\/u\/follow\/getFoldedMessageUserInfo,script-path=https://raw.githubusercontent.com/ClydeTime/Surge/main/Script/Task/TieBa.js,requires-body=0
+贴吧Cookie2 = type=http-request,pattern=^https?:\/\/c\.tieba\.baidu\.com\/c\/u\/follow\/getFoldedMessageUserInfo,script-path=https://raw.githubusercontent.com/ClydeTime/Surge/main/Script/Task/TieBa.js,requires-body=0
+# > 贴吧签到 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/ClydeTime/Surge/main/Script/Task/TieBa.js,wake-system=1,timeout=15,script-update-interval=0
+
+# > 起点看广告
+qidian.cookie = type=http-request,pattern=https\:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/video\/adv\/finishWatch,script-path=https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/qidian/qidian.cookie.js,requires-body=0
+qidian.taskId = type=http-response,pattern=https\:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/video\/adv\/mainPage,script-path=https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/qidian/qidian.taskId.js,requires-body=1
+# > 起点 = type=cron,cronexp=30 21 * * *,script-path=https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/qidian/qidian.js,script-update-interval=0,timeout=300
+
+# > 高德打车签到
+高德打车获取cookie = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/yuece\/act\/query\?, requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, timeout=60, script-update-interval=0
+# > 高德打车签到 = type=cron, cronexp="1 0 * * *", script-path=https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, timeout=60, wake-system=1
+
+[MITM]
+hostname = %APPEND% auth.alipan.com, %APPEND% rewards.bing.com, %APPEND% app.bilibili.com, m.bilibili.com, c.tieba.baidu.com, tiebac.baidu.com, h5.if.qidian.com, %APPEND% m5-zb.amap.com
